@@ -31,18 +31,17 @@ abstract class FabricExtension(val project: Project) {
         project.pluginManager.apply("org.jetbrains.kotlin.jvm")
 
         project.afterEvaluate {
-            pluginManager.apply("fabric-loom")
+            pluginManager.apply("net.fabricmc.fabric-loom")
 
             project.configure<BasePluginExtension> {
                 archivesName.set(modId)
             }
 
-            project.version = "${project.version}+$minecraftVersion"
+            project.version = "${project.version}+${minecraftVersion.get()}"
 
-            pluginManager.withPlugin("fabric-loom") {
+            pluginManager.withPlugin("net.fabricmc.fabric-loom") {
                 dependencies {
                     add("minecraft", "com.mojang:minecraft:${minecraftVersion.get()}")
-                    add("mappings", project.the<LoomGradleExtensionAPI>().officialMojangMappings())
                 }
             }
 
@@ -58,9 +57,9 @@ abstract class FabricExtension(val project: Project) {
             }
 
             dependencies {
-                add("modImplementation", "net.fabricmc:fabric-loader:${loaderVersion.get()}")
-                add("modImplementation", "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion.get()}")
-                add("modImplementation", "net.fabricmc:fabric-language-kotlin:${fabricKotlinVersion.get()}+kotlin.${kotlinVersion.get()}")
+                add("implementation", "net.fabricmc:fabric-loader:${loaderVersion.get()}")
+                add("implementation", "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion.get()}")
+                add("implementation", "net.fabricmc:fabric-language-kotlin:${fabricKotlinVersion.get()}+kotlin.${kotlinVersion.get()}")
             }
 
             configure<LoomGradleExtensionAPI> {
