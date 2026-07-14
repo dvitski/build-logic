@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "cc.dvitski.gradle"
-version = "2.0.0+fabric-loom.1.16"
+version = "2.0.0+fabric-loom.1.17"
 
 gradlePlugin {
     plugins {
@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.fabricmc:fabric-loom:1.16-SNAPSHOT")
+    implementation("net.fabricmc:fabric-loom:1.17-SNAPSHOT")
     implementation("org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:2.2.21")
 }
 
